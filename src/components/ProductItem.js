@@ -4,11 +4,12 @@ import Product from "./Product";
 
 import { ProductContainer, WrapAnimation } from "styles/ProductItemStyle";
 
-const ProductItem = ({ product, onAddToCartClicked }) => (
+const ProductItem = ({ product, onAddToCartClicked, themeProducts }) => (
   <WrapAnimation>
     <ProductContainer>
       <Product
         title={product.title}
+        describe={themeProducts === 2 ? product.describe : ""}
         priceIs={product.priceIs}
         priceBefore={product.priceBefore}
         quantity={product.count}
@@ -29,7 +30,8 @@ ProductItem.propTypes = {
     count: PropTypes.number.isRequired,
     img: PropTypes.string.isRequired
   }).isRequired,
-  onAddToCartClicked: PropTypes.func.isRequired
+  onAddToCartClicked: PropTypes.func.isRequired,
+  themeProducts: PropTypes.number.isRequired
 };
 
 export default ProductItem;

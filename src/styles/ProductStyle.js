@@ -31,7 +31,6 @@ export const Title = style.div`
 
 export const Describe = style.div`
   margin: 5px auto;
-  visibility: ${props => product(props).describe.visibility}
 `;
 
 export const PriceContainer = style.div`

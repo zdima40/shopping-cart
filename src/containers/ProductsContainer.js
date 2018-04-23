@@ -13,17 +13,17 @@ import lang from "constants/lang";
 import { ThemeProvider } from "styled-components";
 import { Wrap, themes } from "styles/ProductsContainerStyle";
 
-const ProductsContainer = ({ products, addToCart, theme }) => (
+const ProductsContainer = ({ products, addToCart, themeProducts }) => (
   <ProductsList title={lang.TITLE_PRODUCTS_CONTAINER}>
     <ButtonsSelectView />
-    <ThemeProvider theme={themes[theme]}>
+    <ThemeProvider theme={themes[themeProducts]}>
       <Wrap longDisplay>
         {products.map(product => (
           <ProductItem
             key={product.id}
             product={product}
             onAddToCartClicked={() => addToCart(product.id)}
-            theme={theme}
+            themeProducts={themeProducts}
           />
         ))}
       </Wrap>
@@ -44,12 +44,12 @@ ProductsContainer.propTypes = {
     })
   ).isRequired,
   addToCart: PropTypes.func.isRequired,
-  theme: PropTypes.number.isRequired
+  themeProducts: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => ({
   products: getVisibleProducts(state.products),
-  theme: state.products.theme
+  themeProducts: state.products.theme
 });
 
 const mapDispatchToProps = {

@@ -32,9 +32,6 @@ const themeProductContainer1 = {
     image: {
       height: "150px",
       width: "auto"
-    },
-    describe: {
-      visibility: "visible"
     }
   }
 };
@@ -62,9 +59,6 @@ const themeProductContainer2 = {
     image: {
       height: "60%",
       width: "80%"
-    },
-    describe: {
-      visibility: "hidden"
     }
   }
 };

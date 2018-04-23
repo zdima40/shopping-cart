@@ -62,7 +62,7 @@ const Product = ({
       </PriceContainer>
       {/* {quantity ? ` x ${quantity}` : null} */}
 
-      {/* Рендер кнопки, если получен renderBtn */}
+      {/* Рендер кнопки "Add to cart", если получен renderBtn */}
       {renderBtn ? renderButton(onAddToCartClicked, quantity) : ""}
     </BlockB>
   </BlocksContainer>

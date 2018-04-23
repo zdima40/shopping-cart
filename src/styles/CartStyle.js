@@ -9,9 +9,6 @@ export const themeProduct = {
     image: {
       height: "150px",
       width: "none"
-    },
-    describe: {
-      visibility: "visible"
     }
   }
 };
