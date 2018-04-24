@@ -2,11 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addToCart } from "actions";
-import { getVisibleProducts } from "selectors/productsSelectors";
+import { getVisibleProducts } from "selectors";
 
 import ProductItem from "components/ProductItem";
 import ProductsList from "components/ProductsList";
-import ButtonsSelectView from "containers/ButtonsSelectViewContainer";
 
 import lang from "constants/lang";
 
@@ -15,12 +14,12 @@ import { Wrap, themes } from "styles/ProductsContainerStyle";
 
 const ProductsContainer = ({ products, addToCart, themeProducts }) => (
   <ProductsList title={lang.TITLE_PRODUCTS_CONTAINER}>
-    <ButtonsSelectView />
     <ThemeProvider theme={themes[themeProducts]}>
-      <Wrap longDisplay>
-        {products.map(product => (
+      <Wrap>
+        {products.map((product, index) => (
           <ProductItem
-            key={product.id}
+            //rigth key={product.id}
+            key={index}
             product={product}
             onAddToCartClicked={() => addToCart(product.id)}
             themeProducts={themeProducts}
@@ -48,7 +47,7 @@ ProductsContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  products: getVisibleProducts(state.products),
+  products: getVisibleProducts(state),
   themeProducts: state.products.theme
 });
 

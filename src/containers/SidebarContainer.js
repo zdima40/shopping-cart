@@ -8,6 +8,8 @@ import styled from "styled-components";
 import Button from "material-ui/Button";
 import Badge from "material-ui/Badge";
 
+import Search from "components/Search";
+
 import { getCountAddedIds } from "selectors";
 
 import lang from "constants/lang";
@@ -45,7 +47,12 @@ const renderMenuButton = (menu, count) => {
 
 const SidebarContainer = props => {
   const { count } = props;
-  return <div>{menus.map(menu => renderMenuButton(menu, count))}</div>;
+  return (
+    <div>
+      {menus.map(menu => renderMenuButton(menu, count))}
+      <Search />
+    </div>
+  );
 };
 
 const mapStateToProps = state => ({

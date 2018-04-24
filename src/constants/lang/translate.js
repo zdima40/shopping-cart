@@ -14,7 +14,9 @@ export default class Lang {
       SOLD_OUT_PRODUCT_ITEM: "Все продано",
       // Sidebar.js
       PRODUCTS_SIDEBAR: "Продукты",
-      CART_SIDEBAR: "Корзина"
+      CART_SIDEBAR: "Корзина",
+      // ButtonPagination.js
+      SHOW_MORE_BUTTON_PAGINATION: "Показать еще"
     };
     this.en = {
       // Cart.js
@@ -30,7 +32,9 @@ export default class Lang {
       SOLD_OUT_PRODUCT_ITEM: "Sold Out",
       // Sidebar.js
       PRODUCTS_SIDEBAR: "Prodcuts",
-      CART_SIDEBAR: "Cart"
+      CART_SIDEBAR: "Cart",
+      // ButtonPagination.js
+      SHOW_MORE_BUTTON_PAGINATION: "Show more"
     };
   }
 }

@@ -35,14 +35,5 @@
     "priceBefore": 500,
     "count": 10,
     "img": "img/pic.jpg"
-  },
-  {
-    "id": 5,
-    "title": "H&M T-Shirt White2",
-    "describe": "This is describe of H&M T-Shirt White2",
-    "priceIs": 200,
-    "priceBefore": 500,
-    "count": 10,
-    "img": "img/pic.jpg"
   }
 ]

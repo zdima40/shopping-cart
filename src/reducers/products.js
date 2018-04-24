@@ -2,17 +2,21 @@ import { combineReducers } from "redux";
 import {
   RECEIVE_PRODUCTS,
   ADD_TO_CART,
-  SET_PRODUCTS_VIEW_STYLE_SECCESS
+  SET_PRODUCTS_VIEW_STYLE_SUCCESS,
+  LOAD_MORE_PRODUCTS_SUCCESS,
+  SEARCH_PRODUCT
 } from "constants/ActionTypes";
 
 // Lodash
 import keyBy from "lodash/keyBy";
 import merge from "lodash/merge";
+import concat from "lodash/concat";
 
 const initialState = {
   byId: {},
   visibleIds: [],
-  theme: 1
+  theme: 1,
+  search: ""
 };
 
 /*
@@ -51,11 +55,22 @@ const byId = (state = initialState.byId, action) => {
   switch (action.type) {
     case RECEIVE_PRODUCTS:
       return merge(state, keyBy(action.products, "id"));
+    case LOAD_MORE_PRODUCTS_SUCCESS:
+      return merge(state, keyBy(action.products, "id"));
     default:
       const { productId } = action;
       if (productId) {
         return merge(state, { [productId]: product(state[productId], action) });
       }
+      return state;
+  }
+};
+
+const search = (state = initialState.search, action) => {
+  switch (action.type) {
+    case SEARCH_PRODUCT:
+      return action.payload;
+    default:
       return state;
   }
 };
@@ -73,6 +88,9 @@ const visibleIds = (state = initialState.visibleIds, action) => {
   switch (action.type) {
     case RECEIVE_PRODUCTS:
       return action.products.map(product => product.id);
+    case LOAD_MORE_PRODUCTS_SUCCESS:
+      const newIds = action.products.map(product => product.id);
+      return concat(state, newIds);
     default:
       return state;
   }
@@ -81,15 +99,15 @@ const visibleIds = (state = initialState.visibleIds, action) => {
 /*
 *  Метод изменения состояния "theme"
 *
-*  :
-*  
+*  SET_PRODUCTS_VIEW_STYLE_SUCCESS:
+*  возвращает полученный номер темы (1 или 2)
 *  
 *  default:
 *  Возвращает текущее состояние
 */
 const theme = (state = initialState.theme, action) => {
   switch (action.type) {
-    case SET_PRODUCTS_VIEW_STYLE_SECCESS:
+    case SET_PRODUCTS_VIEW_STYLE_SUCCESS:
       return action.style;
     default:
       return state;
@@ -99,5 +117,6 @@ const theme = (state = initialState.theme, action) => {
 export default combineReducers({
   byId,
   visibleIds,
-  theme
+  theme,
+  search
 });
