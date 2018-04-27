@@ -2,17 +2,15 @@ import {
   ADD_TO_CART,
   CHECKOUT_FAILURE,
   CHECKOUT_SUCCESS
-} from '../constants/ActionTypes'
+} from "../constants/ActionTypes";
 
 // Lodash
-//import keyBy from 'lodash/keyBy'
-import merge from 'lodash/merge'
-import concat from 'lodash/concat'
+import _ from "lodash";
 
 const initialState = {
   addedIds: [],
   quantityById: {}
-}
+};
 
 /*
 *  Метод изменения состояния "addedIds"
@@ -30,13 +28,13 @@ const addedIds = (state = initialState.addedIds, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       if (state.indexOf(action.productId) !== -1) {
-        return state
+        return state;
       }
-      return concat(state, action.productId)
+      return _.concat(state, action.productId);
     default:
-      return state
+      return state;
   }
-}
+};
 
 /*
 *  Метод изменения состояния "quantityById"
@@ -51,14 +49,12 @@ const addedIds = (state = initialState.addedIds, action) => {
 const quantityById = (state = initialState.quantityById, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const { productId } = action
-      return merge (state,
-        {[productId]: (state[productId] || 0) + 1}
-      )
+      const { productId } = action;
+      return _.merge(state, { [productId]: (state[productId] || 0) + 1 });
     default:
-      return state
+      return state;
   }
-}
+};
 
 /*
 *  Метод изменения состояния корзины "initialState"
@@ -78,16 +74,16 @@ const quantityById = (state = initialState.quantityById, action) => {
 const cart = (state = initialState, action) => {
   switch (action.type) {
     case CHECKOUT_SUCCESS:
-      alert(JSON.stringify(action.products))
-      return initialState
+      alert(JSON.stringify(action.products));
+      return initialState;
     case CHECKOUT_FAILURE:
-      return action.err
+      return action.err;
     default:
       return {
         addedIds: addedIds(state.addedIds, action),
         quantityById: quantityById(state.quantityById, action)
-      }
+      };
   }
-}
+};
 
-export default cart
+export default cart;

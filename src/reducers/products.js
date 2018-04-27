@@ -8,9 +8,7 @@ import {
 } from "constants/ActionTypes";
 
 // Lodash
-import keyBy from "lodash/keyBy";
-import merge from "lodash/merge";
-import concat from "lodash/concat";
+import _ from "lodash";
 
 const initialState = {
   byId: {},
@@ -32,7 +30,7 @@ const initialState = {
 const product = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      return merge(state, { count: state.count - 1 });
+      return _.merge(state, { count: state.count - 1 });
     default:
       return state;
   }
@@ -54,13 +52,15 @@ const product = (state, action) => {
 const byId = (state = initialState.byId, action) => {
   switch (action.type) {
     case RECEIVE_PRODUCTS:
-      return merge(state, keyBy(action.products, "id"));
+      return _.merge(state, _.keyBy(action.products, "id"));
     case LOAD_MORE_PRODUCTS_SUCCESS:
-      return merge(state, keyBy(action.products, "id"));
+      return _.merge(state, _.keyBy(action.products, "id"));
     default:
       const { productId } = action;
       if (productId) {
-        return merge(state, { [productId]: product(state[productId], action) });
+        return _.merge(state, {
+          [productId]: product(state[productId], action)
+        });
       }
       return state;
   }
@@ -90,7 +90,7 @@ const visibleIds = (state = initialState.visibleIds, action) => {
       return action.products.map(product => product.id);
     case LOAD_MORE_PRODUCTS_SUCCESS:
       const newIds = action.products.map(product => product.id);
-      return concat(state, newIds);
+      return _.concat(state, newIds);
     default:
       return state;
   }
