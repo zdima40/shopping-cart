@@ -11,7 +11,7 @@ import reducer from "reducers";
 //import { getAllProducts } from './actions'
 
 //import Components for Router
-import Layout from "components/Layout";
+import Layout from "containers/Layout";
 import Products from "containers/ProductsContainer/";
 import Cart from "containers/CartContainer/";
 
