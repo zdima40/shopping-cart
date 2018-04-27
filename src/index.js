@@ -7,19 +7,19 @@ import thunk from "redux-thunk";
 import { Router, browserHistory } from "react-router";
 import { syncHistoryWithStore } from "react-router-redux";
 
-import { injectGlobal } from "styled-components";
-
-// Mui components
-import { MuiThemeProvider } from "material-ui/styles";
-import theme from "styles/MuiTheme";
-
 import reducer from "reducers";
 //import { getAllProducts } from './actions'
 
 //import Components for Router
 import Layout from "components/Layout";
-import Main from "containers/MainContainer/";
+import Products from "containers/ProductsContainer/";
 import Cart from "containers/CartContainer/";
+
+import { injectGlobal } from "styled-components";
+
+// Mui components
+import { MuiThemeProvider } from "material-ui/styles";
+import theme from "styles/MuiTheme";
 
 const middleware = [thunk];
 if (process.env.NODE_ENV !== "production") {
@@ -28,17 +28,15 @@ if (process.env.NODE_ENV !== "production") {
 
 const store = createStore(reducer, applyMiddleware(...middleware));
 
-//store.dispatch(fetchProducts())
-
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);
 
 const routes = {
   component: Layout,
   childRoutes: [
-    { path: "/", component: Main },
+    { path: "/", component: Products },
     { path: "/cart", component: Cart },
-    { path: "*", component: Main }
+    { path: "*", component: Products }
   ]
 };
 

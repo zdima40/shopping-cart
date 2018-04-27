@@ -1,4 +1,4 @@
-import shop from "api/shop";
+import shop from "api";
 import * as types from "constants/ActionTypes";
 
 import { getCartProducts, getRenderedProductsLength } from "selectors";
