@@ -2,7 +2,6 @@ import shop from "api";
 import * as types from "constants/ActionTypes";
 
 import { getCartProducts, getRenderedProductsLength } from "selectors";
-import { SEARCH_PHONE } from "../constants/ActionTypes";
 
 export const fetchProducts = () => async dispatch => {
   const products = await shop.getProducts();
@@ -90,6 +89,31 @@ export const fetchProductsGroups = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: types.FETCH_PRODUCTS_GROUPS_FAILURE,
+      err,
+      error: true
+    });
+  }
+};
+
+export const setProductSpecialOffers = id => dispatch => {
+  dispatch({
+    type: types.GET_ID_PRODUCT_SPECIAL_OFFERS,
+    idSpecialOffersProduct: id
+  });
+};
+
+export const fetchSpecialOffersSettings = () => async dispatch => {
+  const timeOut = await shop.getTimeOut();
+  dispatch({ type: types.LOAD_SO_SETTINGS_START });
+
+  try {
+    dispatch({
+      type: types.LOAD_SO_SETTINGS_SUCCESS,
+      timeOut: timeOut.timeOut
+    });
+  } catch (err) {
+    dispatch({
+      type: types.LOAD_SO_SETTINGS_FAILURE,
       err,
       error: true
     });

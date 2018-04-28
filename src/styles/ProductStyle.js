@@ -42,7 +42,7 @@ export const PriceIs = style.span`
 `;
 
 export const PriceBefore = style.span`
- 
+  text-decoration: line-through;
 `;
 
 export const StyledButton = style(Button)`

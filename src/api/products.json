@@ -4,7 +4,7 @@
     "title": "iPad 4 Mini",
     "describe": "This is describe of iPad 4 Mini",
     "priceIs": 500.01,
-    "priceBefore": 600,
+    "priceBefore": 0,
     "count": 2,
     "img": "/img/pic.jpg",
     "group": 1
@@ -14,7 +14,7 @@
     "title": "H&M T-Shirt White",
     "describe": "This is describe of H&M T-Shirt White",
     "priceIs": 400,
-    "priceBefore": 500,
+    "priceBefore": 100,
     "count": 10,
     "img": "/img/pic.jpg",
     "group": 1
@@ -25,7 +25,7 @@
     "describe":
       "This is describe of Charli XCX - Sucker CD This is describe of Charli XCX - Sucker CD",
     "priceIs": 19.99,
-    "priceBefore": 0,
+    "priceBefore": 100,
     "count": 5,
     "img": "/img/pic.jpg",
     "group": 2
@@ -35,7 +35,7 @@
     "title": "H&M T-Shirt White2",
     "describe": "This is describe of H&M T-Shirt White2",
     "priceIs": 200,
-    "priceBefore": 500,
+    "priceBefore": 0,
     "count": 10,
     "img": "/img/pic.jpg",
     "group": 3

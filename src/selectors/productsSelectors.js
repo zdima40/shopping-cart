@@ -1,4 +1,4 @@
-import _ from "lodash";
+// import _ from "lodash";
 
 /*
 * Метод получения продукта (объекта) из state по значению id
@@ -47,11 +47,10 @@ export const getVisibleProducts = (state, ownProps) => {
 export const getRenderedProductsLength = state => state.visibleIds.length;
 
 //export const getGroupsProducts = state => _.values(state.byIdGroups);
-export const getGroupsProducts = state => {
+export const getValues = state => {
   const arr = [];
-  const obj = state.byIdGroups;
-  for (var key in obj) {
-    arr.push(obj[key]);
+  for (var key in state) {
+    arr.push(state[key]);
   }
   return arr;
 };
@@ -59,4 +58,13 @@ export const getGroupsProducts = state => {
 export const getActiveGroupId = ownProps => {
   //return Number(_.get(ownProps, "params.id"));
   return Number(ownProps.params.id);
+};
+
+// Получение массива продуктов со сниженной ценой (priceBefore > 0)
+export const getSpecialOffersProducts = state => {
+  const arr = [];
+  getValues(state.byId).map(product => {
+    if (product.priceBefore) arr.push(product);
+  });
+  return arr;
 };

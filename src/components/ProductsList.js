@@ -6,6 +6,7 @@ import ButtonPagination from "containers/ButtonPaginationContainer";
 import ProductsGroups from "containers/ProductsGroupsContainer";
 
 import Grid from "material-ui/Grid";
+import SpecialOffers from "containers/SpecialOffersContainer";
 
 const ProductsList = ({ title, children }) => (
   <Grid container spacing={16}>
@@ -13,6 +14,7 @@ const ProductsList = ({ title, children }) => (
       <ProductsGroups />
     </Grid>
     <Grid item xs={10}>
+      <SpecialOffers />
       <h3>{title}</h3>
       <ButtonsSelectView />
       <div>{children}</div>

@@ -7,6 +7,7 @@ import styled from "styled-components";
 // import material-ui
 import Button from "material-ui/Button";
 import Badge from "material-ui/Badge";
+import Grid from "material-ui/Grid";
 
 import Search from "containers/SearchContainer";
 
@@ -48,10 +49,14 @@ const renderMenuButton = (menu, count) => {
 const SidebarContainer = props => {
   const { count } = props;
   return (
-    <div>
-      {menus.map(menu => renderMenuButton(menu, count))}
-      <Search />
-    </div>
+    <Grid container>
+      <Grid item xs={10}>
+        {menus.map(menu => renderMenuButton(menu, count))}
+      </Grid>
+      <Grid item xs={2}>
+        <Search />
+      </Grid>
+    </Grid>
   );
 };
 

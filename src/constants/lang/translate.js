@@ -16,7 +16,9 @@ export default class Lang {
       PRODUCTS_SIDEBAR: "Продукты",
       CART_SIDEBAR: "Корзина",
       // ButtonPagination.js
-      SHOW_MORE_BUTTON_PAGINATION: "Показать еще"
+      SHOW_MORE_BUTTON_PAGINATION: "Показать еще",
+      // ProductsGroupsContainer.js
+      ALL_PRODUCTS_PRODCUTS_GROUPS_CONTAINER: "Все продукты"
     };
     this.en = {
       // Cart.js
@@ -34,7 +36,9 @@ export default class Lang {
       PRODUCTS_SIDEBAR: "Prodcuts",
       CART_SIDEBAR: "Cart",
       // ButtonPagination.js
-      SHOW_MORE_BUTTON_PAGINATION: "Show more"
+      SHOW_MORE_BUTTON_PAGINATION: "Show more",
+      // ProductsGroupsContainer.js
+      ALL_PRODUCTS_PRODCUTS_GROUPS_CONTAINER: "All products"
     };
   }
 }

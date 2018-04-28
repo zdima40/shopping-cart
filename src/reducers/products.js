@@ -5,7 +5,9 @@ import {
   SET_PRODUCTS_VIEW_STYLE_SUCCESS,
   LOAD_MORE_PRODUCTS_SUCCESS,
   SEARCH_PRODUCT,
-  FETCH_PRODUCTS_GROUPS_SUCCESS
+  FETCH_PRODUCTS_GROUPS_SUCCESS,
+  GET_ID_PRODUCT_SPECIAL_OFFERS,
+  LOAD_SO_SETTINGS_SUCCESS
 } from "constants/ActionTypes";
 
 // Lodash
@@ -16,7 +18,9 @@ const initialState = {
   visibleIds: [],
   theme: 1,
   search: "",
-  byIdGroups: {}
+  byIdGroups: {},
+  idSpecialOffersProduct: 0,
+  timeOut: ""
 };
 
 /*
@@ -164,11 +168,39 @@ const byIdGroups = (state = initialState.byIdGroups, action) => {
       return state;
   }
 };
+/*
+*  Метод изменения состояния "idSpecialOffersProduct"
+*
+*  GET_ID_PRODUCT_SPECIAL_OFFERS:
+*  Добавление значения id выбранного продукта в специальном предложении
+*/
+const idSpecialOffersProduct = (
+  state = initialState.idSpecialOffersProduct,
+  action
+) => {
+  switch (action.type) {
+    case GET_ID_PRODUCT_SPECIAL_OFFERS:
+      return action.idSpecialOffersProduct;
+    default:
+      return state;
+  }
+};
+
+const timeOut = (state = initialState.timeOut, action) => {
+  switch (action.type) {
+    case LOAD_SO_SETTINGS_SUCCESS:
+      return action.timeOut;
+    default:
+      return state;
+  }
+};
 
 export default combineReducers({
   byId,
   visibleIds,
   theme,
   search,
-  byIdGroups
+  byIdGroups,
+  idSpecialOffersProduct,
+  timeOut
 });

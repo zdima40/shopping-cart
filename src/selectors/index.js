@@ -6,7 +6,8 @@ const getAddedIds = state => fromCart.getAddedIds(state.cart);
 
 const getQuantity = (state, id) => fromCart.getQuantity(state.cart, id);
 
-const getProduct = (state, id) => fromProducts.getProduct(state.products, id);
+export const getProduct = (state, id) =>
+  fromProducts.getProduct(state.products, id);
 
 export const getCountAddedIds = state => fromCart.getCountAddedIds(state.cart);
 
@@ -16,11 +17,17 @@ export const getVisibleProducts = (state, ownProps) =>
 export const getRenderedProductsLength = state =>
   fromProducts.getRenderedProductsLength(state.products);
 
-export const getGroupsProducts = state =>
-  fromProducts.getGroupsProducts(state.products);
+export const getValues = state =>
+  fromProducts.getValues(state.products.byIdGroups);
 
 export const getActiveGroupId = ownProps =>
   fromProducts.getActiveGroupId(ownProps);
+
+export const getSpecialOffersProducts = state =>
+  fromProducts.getSpecialOffersProducts(state.products);
+
+// export const getSpecialOffersProduct = state =>
+//   fromProducts.getSpecialOffersProduct(state.products);
 
 /*
 *  Метод суммирования цен товаров умноженных на количество 

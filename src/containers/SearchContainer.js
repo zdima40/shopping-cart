@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import TextField from "material-ui/TextField";
-
 import { searchProduct } from "actions";
+
+import { StyledForm, StyledTextField } from "styles/SearchContainer";
 
 class Search extends React.Component {
   constructor(props) {
@@ -29,15 +29,15 @@ class Search extends React.Component {
   render() {
     return (
       <span>
-        <form onSubmit={this.handleSubmit}>
-          <TextField
+        <StyledForm onSubmit={this.handleSubmit}>
+          <StyledTextField
             id="search"
             label="Search field"
             type="search"
             margin="normal"
             onChange={this.handleChange}
           />
-        </form>
+        </StyledForm>
       </span>
     );
   }

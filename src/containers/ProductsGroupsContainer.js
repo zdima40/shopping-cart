@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { compose } from "redux";
 
-import { getGroupsProducts, getActiveGroupId } from "selectors";
+import { getValues, getActiveGroupId } from "selectors";
 
 import { GroupProducts } from "styles/ProductsGroupsStyle";
+
+import lang from "constants/lang";
 
 const renderGroup = (group, activeGroupId) => {
   const activeGroup = activeGroupId === group.id ? "activeGroup" : "";
@@ -24,7 +26,7 @@ const renderAllGroups = activeGroupId => {
   const activeGroup = activeGroupId ? "" : "activeGroup";
   return (
     <GroupProducts to="/" activegroup={activeGroup}>
-      All products
+      {lang.ALL_PRODUCTS_PRODCUTS_GROUPS_CONTAINER}
     </GroupProducts>
   );
 };
@@ -38,7 +40,7 @@ const ProductsGroupsContainer = ({ groups, activeGroupId }) => (
 );
 
 const mapStateToProps = (state, ownProps) => ({
-  groups: getGroupsProducts(state),
+  groups: getValues(state),
   activeGroupId: getActiveGroupId(ownProps)
 });
 

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import lang from "constants/lang";
+import AddToCartButton from "components/AddToCartButton";
 
 import {
   BlocksContainer,
@@ -12,24 +12,24 @@ import {
   Describe,
   PriceContainer,
   PriceIs,
-  PriceBefore,
-  StyledButton
+  PriceBefore
+  //  StyledButton
 } from "styles/ProductStyle";
 
 // Метод рендера кнопки
-function renderButton(onAddToCartClicked, quantity) {
-  return (
-    <StyledButton
-      variant="raised"
-      onClick={onAddToCartClicked}
-      disabled={quantity > 0 ? false : true}
-    >
-      {quantity > 0
-        ? lang.ADD_TO_CART_PRODUCT_ITEM
-        : lang.SOLD_OUT_PRODUCT_ITEM}
-    </StyledButton>
-  );
-}
+// function renderButton(onAddToCartClicked, quantity) {
+//   return (
+//     <StyledButton
+//       variant="raised"
+//       onClick={onAddToCartClicked}
+//       disabled={quantity > 0 ? false : true}
+//     >
+//       {quantity > 0
+//         ? lang.ADD_TO_CART_PRODUCT_ITEM
+//         : lang.SOLD_OUT_PRODUCT_ITEM}
+//     </StyledButton>
+//   );
+// }
 
 // Метод рендера описания
 function renderDescribe(describe) {
@@ -63,7 +63,13 @@ const Product = ({
       {/* {quantity ? ` x ${quantity}` : null} */}
 
       {/* Рендер кнопки "Add to cart", если получен renderBtn */}
-      {renderBtn ? renderButton(onAddToCartClicked, quantity) : ""}
+      {/* {renderBtn ? renderButton(onAddToCartClicked, quantity) : ""} */}
+
+      <AddToCartButton
+        onAddToCartClicked={onAddToCartClicked}
+        quantity={quantity}
+        renderBtn={renderBtn}
+      />
     </BlockB>
   </BlocksContainer>
 );
