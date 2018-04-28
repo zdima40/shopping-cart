@@ -2,7 +2,7 @@ import {
   ADD_TO_CART,
   CHECKOUT_FAILURE,
   CHECKOUT_SUCCESS
-} from "../constants/ActionTypes";
+} from "constants/ActionTypes";
 
 // Lodash
 // import _ from "lodash";

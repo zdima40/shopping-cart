@@ -74,7 +74,7 @@ export const loadMoreProducts = () => async (dispatch, getState) => {
 export const searchProduct = text => dispatch => {
   dispatch({
     type: types.SEARCH_PRODUCT,
-    payload: text
+    search: text
   });
 };
 
@@ -85,12 +85,12 @@ export const fetchProductsGroups = () => async dispatch => {
   try {
     dispatch({
       type: types.FETCH_PRODUCTS_GROUPS_SUCCESS,
-      payload: productsGroups
+      productsGroups
     });
   } catch (err) {
     dispatch({
       type: types.FETCH_PRODUCTS_GROUPS_FAILURE,
-      payload: err,
+      err,
       error: true
     });
   }

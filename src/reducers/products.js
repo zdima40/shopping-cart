@@ -94,7 +94,7 @@ const byId = (state = initialState.byId, action) => {
 const search = (state = initialState.search, action) => {
   switch (action.type) {
     case SEARCH_PRODUCT:
-      return action.payload;
+      return action.search;
     default:
       return state;
   }
@@ -142,23 +142,20 @@ const theme = (state = initialState.theme, action) => {
 /*
 *  Метод изменения состояния "byIdGroups"
 *
-*  RECEIVE_PRODUCTS:
-*  Добавление списка продуктов с ключами
+*  FETCH_PRODUCTS_GROUPS_SUCCESS:
+*  Добавление списка групп продуктов с ключами
 *  значения которых равны значению id 
 *  
-*  default:
-*  Если получено значение productId, то обновляет состояние продуктов "byId",
-*  получая новое состояние конкретного продукта методом products()
-*  Если значение productId не получено, то возвращает текущее состояние
+*  default:возвращает текущее состояние
 * 
 */
-const byIdGroups = (state = initialState.byIdGroups, { type, payload }) => {
-  switch (type) {
+const byIdGroups = (state = initialState.byIdGroups, action) => {
+  switch (action.type) {
     case FETCH_PRODUCTS_GROUPS_SUCCESS:
       //return _.merge(state, _.keyBy(payload, "id"));
       return {
         ...state,
-        ...payload.reduce((obj, group) => {
+        ...action.productsGroups.reduce((obj, group) => {
           obj[group.id] = group;
           return obj;
         }, {})
