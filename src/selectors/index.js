@@ -1,15 +1,28 @@
 import * as fromCart from "./cartSelectors";
 import * as fromProducts from "./productsSelectors";
 
+import _ from "lodash";
+
 // Импортированные методы
 const getAddedIds = state => fromCart.getAddedIds(state.cart);
+
 const getQuantity = (state, id) => fromCart.getQuantity(state.cart, id);
+
 const getProduct = (state, id) => fromProducts.getProduct(state.products, id);
+
 export const getCountAddedIds = state => fromCart.getCountAddedIds(state.cart);
-export const getVisibleProducts = state =>
-  fromProducts.getVisibleProducts(state.products);
+
+export const getVisibleProducts = (state, ownProps) =>
+  fromProducts.getVisibleProducts(state.products, ownProps);
+
 export const getRenderedProductsLength = state =>
   fromProducts.getRenderedProductsLength(state.products);
+
+export const getGroupsProducts = state =>
+  fromProducts.getGroupsProducts(state.products);
+
+export const getActiveGroupId = ownProps =>
+  fromProducts.getActiveGroupId(ownProps);
 
 /*
 *  Метод суммирования цен товаров умноженных на количество 

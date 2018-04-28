@@ -11,7 +11,7 @@ import reducer from "reducers";
 //import { getAllProducts } from './actions'
 
 //import Components for Router
-import Layout from "containers/Layout";
+import Layout from "components/Layout";
 import Products from "containers/ProductsContainer/";
 import Cart from "containers/CartContainer/";
 
@@ -35,6 +35,7 @@ const routes = {
   component: Layout,
   childRoutes: [
     { path: "/", component: Products },
+    { path: "/groups/:id", component: Products },
     { path: "/cart", component: Cart },
     { path: "*", component: Products }
   ]

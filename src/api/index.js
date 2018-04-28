@@ -13,7 +13,7 @@ export default {
     new Promise(resolve => {
       resolve(products);
     }),
-  getGroups: async () =>
+  getProductsGroups: async () =>
     new Promise(resolve => {
       resolve(groups);
     })

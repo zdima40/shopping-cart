@@ -6,7 +6,8 @@
     "priceIs": 500.01,
     "priceBefore": 600,
     "count": 2,
-    "img": "img/pic.jpg"
+    "img": "/img/pic.jpg",
+    "group": 1
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "priceIs": 400,
     "priceBefore": 500,
     "count": 10,
-    "img": "img/pic.jpg"
+    "img": "/img/pic.jpg",
+    "group": 1
   },
   {
     "id": 3,
@@ -25,7 +27,8 @@
     "priceIs": 19.99,
     "priceBefore": 0,
     "count": 5,
-    "img": "img/pic.jpg"
+    "img": "/img/pic.jpg",
+    "group": 2
   },
   {
     "id": 4,
@@ -34,6 +37,7 @@
     "priceIs": 200,
     "priceBefore": 500,
     "count": 10,
-    "img": "img/pic.jpg"
+    "img": "/img/pic.jpg",
+    "group": 3
   }
 ]

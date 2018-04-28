@@ -4,7 +4,8 @@ import {
   ADD_TO_CART,
   SET_PRODUCTS_VIEW_STYLE_SUCCESS,
   LOAD_MORE_PRODUCTS_SUCCESS,
-  SEARCH_PRODUCT
+  SEARCH_PRODUCT,
+  FETCH_PRODUCTS_GROUPS_SUCCESS
 } from "constants/ActionTypes";
 
 // Lodash
@@ -14,7 +15,8 @@ const initialState = {
   byId: {},
   visibleIds: [],
   theme: 1,
-  search: ""
+  search: "",
+  byIdGroups: {}
 };
 
 /*
@@ -114,9 +116,32 @@ const theme = (state = initialState.theme, action) => {
   }
 };
 
+/*
+*  Метод изменения состояния "byIdGroups"
+*
+*  RECEIVE_PRODUCTS:
+*  Добавление списка продуктов с ключами
+*  значения которых равны значению id 
+*  
+*  default:
+*  Если получено значение productId, то обновляет состояние продуктов "byId",
+*  получая новое состояние конкретного продукта методом products()
+*  Если значение productId не получено, то возвращает текущее состояние
+* 
+*/
+const byIdGroups = (state = initialState.byIdGroups, { type, payload }) => {
+  switch (type) {
+    case FETCH_PRODUCTS_GROUPS_SUCCESS:
+      return _.merge(state, _.keyBy(payload, "id"));
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   byId,
   visibleIds,
   theme,
-  search
+  search,
+  byIdGroups
 });

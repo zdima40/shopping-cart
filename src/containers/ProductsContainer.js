@@ -8,7 +8,7 @@ import ProductItem from "components/ProductItem";
 import ProductsList from "components/ProductsList";
 
 import { fetchProducts } from "actions";
-import { addToCart } from "actions";
+import { addToCart, fetchProductsGroups } from "actions";
 
 import { ThemeProvider } from "styled-components";
 import { Wrap, themes } from "styles/ProductsContainerStyle";
@@ -18,6 +18,7 @@ import lang from "constants/lang";
 class ProductsContainer extends Component {
   componentDidMount() {
     this.props.fetchProducts();
+    this.props.fetchProductsGroups();
     this.delClassWrapProductAnimation();
   }
 
@@ -61,15 +62,16 @@ class ProductsContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   theme: state.products.theme,
-  products: getVisibleProducts(state),
+  products: getVisibleProducts(state, ownProps),
   themeProducts: state.products.theme
 });
 
 const mapDispatchToProps = {
   fetchProducts,
-  addToCart
+  addToCart,
+  fetchProductsGroups
 };
 
 ProductsContainer.propTypes = {

@@ -77,3 +77,21 @@ export const searchProduct = text => dispatch => {
     payload: text
   });
 };
+
+export const fetchProductsGroups = () => async dispatch => {
+  const productsGroups = await shop.getProductsGroups();
+  dispatch({ type: types.FETCH_PRODUCTS_GROUPS_START });
+
+  try {
+    dispatch({
+      type: types.FETCH_PRODUCTS_GROUPS_SUCCESS,
+      payload: productsGroups
+    });
+  } catch (err) {
+    dispatch({
+      type: types.FETCH_PRODUCTS_GROUPS_FAILURE,
+      payload: err,
+      error: true
+    });
+  }
+};

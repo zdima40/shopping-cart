@@ -8,7 +8,7 @@ import styled from "styled-components";
 import Button from "material-ui/Button";
 import Badge from "material-ui/Badge";
 
-import Search from "components/Search";
+import Search from "containers/SearchContainer";
 
 import { getCountAddedIds } from "selectors";
 

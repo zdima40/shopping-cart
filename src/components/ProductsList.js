@@ -1,16 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import ButtonsSelectView from "components/ButtonsSelectViewContainer";
-import ButtonPagination from "components/ButtonPagination";
+import ButtonsSelectView from "containers/ButtonsSelectViewContainer";
+import ButtonPagination from "containers/ButtonPaginationContainer";
+import ProductsGroups from "containers/ProductsGroupsContainer";
+
+import Grid from "material-ui/Grid";
 
 const ProductsList = ({ title, children }) => (
-  <div>
-    <h3>{title}</h3>
-    <ButtonsSelectView />
-    <div>{children}</div>
-    <ButtonPagination />
-  </div>
+  <Grid container>
+    <Grid item xs={2}>
+      <ProductsGroups />
+    </Grid>
+    <Grid item xs={10}>
+      <h3>{title}</h3>
+      <ButtonsSelectView />
+      <div>{children}</div>
+      <ButtonPagination />
+    </Grid>
+  </Grid>
 );
 
 ProductsList.propTypes = {
