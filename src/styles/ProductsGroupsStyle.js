@@ -4,7 +4,7 @@ import { Link } from "react-router";
 export const GroupProducts = style(Link)`
     display: block;
     height: 40px;
-    width: 100px;
+    width: 100%;
     background: ${props => (props.activegroup ? "#004c8e" : "#3077bf")};
     border: 1px solid #3077bf;
     border-radius: 5px;

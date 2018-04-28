@@ -1,8 +1,6 @@
 import * as fromCart from "./cartSelectors";
 import * as fromProducts from "./productsSelectors";
 
-import _ from "lodash";
-
 // Импортированные методы
 const getAddedIds = state => fromCart.getAddedIds(state.cart);
 

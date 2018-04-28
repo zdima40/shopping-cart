@@ -5,7 +5,7 @@ import {
 } from "../constants/ActionTypes";
 
 // Lodash
-import _ from "lodash";
+// import _ from "lodash";
 
 const initialState = {
   addedIds: [],
@@ -30,7 +30,8 @@ const addedIds = (state = initialState.addedIds, action) => {
       if (state.indexOf(action.productId) !== -1) {
         return state;
       }
-      return _.concat(state, action.productId);
+      // return _.concat(state, action.productId);
+      return [...state, action.productId];
     default:
       return state;
   }
@@ -50,7 +51,11 @@ const quantityById = (state = initialState.quantityById, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       const { productId } = action;
-      return _.merge(state, { [productId]: (state[productId] || 0) + 1 });
+      //return _.merge(state, { [productId]: (state[productId] || 0) + 1 });
+      return {
+        ...state,
+        [productId]: (state[productId] || 0) + 1
+      };
     default:
       return state;
   }

@@ -9,7 +9,7 @@ import {
 } from "constants/ActionTypes";
 
 // Lodash
-import _ from "lodash";
+// import keyBy from "lodash/keyBy";
 
 const initialState = {
   byId: {},
@@ -32,7 +32,11 @@ const initialState = {
 const product = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      return _.merge(state, { count: state.count - 1 });
+      //return _.merge(state, { count: state.count - 1 });
+      return {
+        ...state,
+        count: state.count - 1
+      };
     default:
       return state;
   }
@@ -54,15 +58,34 @@ const product = (state, action) => {
 const byId = (state = initialState.byId, action) => {
   switch (action.type) {
     case RECEIVE_PRODUCTS:
-      return _.merge(state, _.keyBy(action.products, "id"));
+      //return _.merge(state, _.keyBy(action.products, "id"));
+      return {
+        ...state,
+        ...action.products.reduce((obj, product) => {
+          obj[product.id] = product;
+          return obj;
+        }, {})
+      };
     case LOAD_MORE_PRODUCTS_SUCCESS:
-      return _.merge(state, _.keyBy(action.products, "id"));
+      //return _.merge(state, _.keyBy(action.products, "id"));
+      return {
+        ...state,
+        ...action.products.reduce((obj, product) => {
+          obj[product.id] = product;
+          return obj;
+        }, {})
+      };
+
     default:
       const { productId } = action;
       if (productId) {
-        return _.merge(state, {
+        // return _.merge(state, {
+        //   [productId]: product(state[productId], action)
+        // });
+        return {
+          ...state,
           [productId]: product(state[productId], action)
-        });
+        };
       }
       return state;
   }
@@ -92,7 +115,7 @@ const visibleIds = (state = initialState.visibleIds, action) => {
       return action.products.map(product => product.id);
     case LOAD_MORE_PRODUCTS_SUCCESS:
       const newIds = action.products.map(product => product.id);
-      return _.concat(state, newIds);
+      return state.concat(newIds);
     default:
       return state;
   }
@@ -132,7 +155,14 @@ const theme = (state = initialState.theme, action) => {
 const byIdGroups = (state = initialState.byIdGroups, { type, payload }) => {
   switch (type) {
     case FETCH_PRODUCTS_GROUPS_SUCCESS:
-      return _.merge(state, _.keyBy(payload, "id"));
+      //return _.merge(state, _.keyBy(payload, "id"));
+      return {
+        ...state,
+        ...payload.reduce((obj, group) => {
+          obj[group.id] = group;
+          return obj;
+        }, {})
+      };
     default:
       return state;
   }

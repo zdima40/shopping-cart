@@ -8,7 +8,7 @@ import ProductsGroups from "containers/ProductsGroupsContainer";
 import Grid from "material-ui/Grid";
 
 const ProductsList = ({ title, children }) => (
-  <Grid container>
+  <Grid container spacing={16}>
     <Grid item xs={2}>
       <ProductsGroups />
     </Grid>

@@ -10,34 +10,53 @@ export const getProduct = (state, id) => state.byId[id];
 * хранящимся в состоянии "visibleIds"
 */
 export const getVisibleProducts = (state, ownProps) => {
-  //console.log("ownProps", ownProps);
   const activeGroupId = getActiveGroupId(ownProps);
 
-  const myFilter = item => _.filter(item, applySearch);
-  const applySearch = item => _.includes(_.get(item, "title"), state.search);
+  // const myFilterSearch = item => _.filter(item, applySearch);
+  // const applySearch = item =>
+  //   _.includes(_.toLower(_.get(item, "title")), _.toLower(state.search));
 
-  const myFilterGroup = item =>
-    activeGroupId ? _.filter(item, applyGroup) : _.filter(item, applySearch);
-  const applyGroup = item => {
-    var r = _.eq(activeGroupId, item.group);
-    console.log("applyGroup", r, activeGroupId, " ", item.group);
-    return _.eq(activeGroupId, item.group);
-  };
+  // const myFilterGroup = item =>
+  //   activeGroupId ? _.filter(item, applyGroup) : item;
+  // const applyGroup = item => _.eq(activeGroupId, item.group);
 
-  const products = _.flow([_.map, myFilterGroup, myFilter])(
-    state.visibleIds,
-    id => getProduct(state, id)
-  );
+  // const products = _.flow([_.map, myFilterGroup, myFilterSearch])(
+  //   state.visibleIds,
+  //   id => getProduct(state, id)
+  // );
   //const products = state.visibleIds.map(id => getProduct(state, id));
 
-  console.log("products", products);
+  const myFilterSearch = item => item.filter(applySearch);
+  const applySearch = item =>
+    item.title.toLowerCase().includes(state.search.toLowerCase());
+
+  const myFilterGroup = item =>
+    activeGroupId ? item.filter(applyGroup) : item;
+  const applyGroup = item => (activeGroupId === item.group ? true : false);
+
+  const products = (arr => {
+    const arrProducts = arr.map(id => getProduct(state, id));
+    let res = myFilterGroup(arrProducts);
+    res = myFilterSearch(res);
+    return res;
+  })(state.visibleIds);
+
   return products;
 };
 
 export const getRenderedProductsLength = state => state.visibleIds.length;
 
-export const getGroupsProducts = state => _.values(state.byIdGroups);
+//export const getGroupsProducts = state => _.values(state.byIdGroups);
+export const getGroupsProducts = state => {
+  const arr = [];
+  const obj = state.byIdGroups;
+  for (var key in obj) {
+    arr.push(obj[key]);
+  }
+  return arr;
+};
 
 export const getActiveGroupId = ownProps => {
-  return Number(_.get(ownProps, "params.id"));
+  //return Number(_.get(ownProps, "params.id"));
+  return Number(ownProps.params.id);
 };
