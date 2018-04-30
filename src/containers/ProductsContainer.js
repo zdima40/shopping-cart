@@ -7,7 +7,7 @@ import { getVisibleProducts } from "selectors";
 import ProductItem from "components/ProductItem";
 import ProductsList from "components/ProductsList";
 
-import { fetchProducts } from "actions";
+import { fetchProducts, loadMoreProducts } from "actions";
 import {
   addToCart,
   fetchProductsGroups,
@@ -41,13 +41,16 @@ class ProductsContainer extends Component {
   }
 
   render() {
-    const { products, addToCart, themeProducts } = this.props;
+    const { products, addToCart, themeProducts, loadMoreProducts } = this.props;
 
     return (
       <div>
         <h2>{lang.TITLE_MAIN_CONTAINER}</h2>
         <hr />
-        <ProductsList title={lang.TITLE_PRODUCTS_CONTAINER}>
+        <ProductsList
+          title={lang.TITLE_PRODUCTS_CONTAINER}
+          loadMoreProducts={() => loadMoreProducts()}
+        >
           <ThemeProvider theme={themes[themeProducts]}>
             <Wrap>
               {products.map((product, index) => (
@@ -57,6 +60,7 @@ class ProductsContainer extends Component {
                   product={product}
                   onAddToCartClicked={() => addToCart(product.id)}
                   themeProducts={themeProducts}
+                  // for ProductsGroupsContainer
                 />
               ))}
             </Wrap>
@@ -77,7 +81,8 @@ const mapDispatchToProps = {
   fetchProducts,
   addToCart,
   fetchProductsGroups,
-  fetchSpecialOffersSettings
+  fetchSpecialOffersSettings,
+  loadMoreProducts
 };
 
 ProductsContainer.propTypes = {
@@ -93,7 +98,8 @@ ProductsContainer.propTypes = {
     })
   ).isRequired,
   addToCart: PropTypes.func.isRequired,
-  themeProducts: PropTypes.number.isRequired
+  themeProducts: PropTypes.number.isRequired,
+  loadMoreProducts: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

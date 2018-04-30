@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Product from "./Product";
+import Product from "components/Product";
 
 import { ProductContainer, WrapAnimation } from "styles/ProductItemStyle";
 

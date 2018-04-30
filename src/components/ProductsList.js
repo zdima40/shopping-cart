@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import ButtonsSelectView from "containers/ButtonsSelectViewContainer";
-import ButtonPagination from "containers/ButtonPaginationContainer";
+import ButtonPagination from "components/ButtonPagination";
 import ProductsGroups from "containers/ProductsGroupsContainer";
-
-import Grid from "material-ui/Grid";
 import SpecialOffers from "containers/SpecialOffersContainer";
 
-const ProductsList = ({ title, children }) => (
+import Grid from "material-ui/Grid";
+
+const ProductsList = ({ title, children, loadMoreProducts }) => (
   <Grid container spacing={16}>
     <Grid item xs={2}>
       <ProductsGroups />
@@ -18,7 +18,7 @@ const ProductsList = ({ title, children }) => (
       <h3>{title}</h3>
       <ButtonsSelectView />
       <div>{children}</div>
-      <ButtonPagination />
+      <ButtonPagination loadMoreProducts={loadMoreProducts} />
     </Grid>
   </Grid>
 );

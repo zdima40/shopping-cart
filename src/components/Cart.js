@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Product from "./Product";
+import Product from "components/Product";
 
 // import material-ui
 import Button from "material-ui/Button";

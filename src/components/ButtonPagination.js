@@ -7,16 +7,12 @@ import { loadMoreProducts } from "actions";
 
 import lang from "constants/lang";
 
-const ButtonPagination = ({ loadMoreProducts }) => (
+const ButtonPagination = ({ loadMoreProducts, ButtonPagination }) => (
   <div>
-    <Button variant="raised" color="primary" onClick={() => loadMoreProducts()}>
+    <Button variant="raised" color="primary" onClick={loadMoreProducts}>
       {lang.SHOW_MORE_BUTTON_PAGINATION}
     </Button>
   </div>
 );
 
-const mapDispatchToProps = {
-  loadMoreProducts
-};
-
-export default connect(null, mapDispatchToProps)(ButtonPagination);
+export default ButtonPagination;

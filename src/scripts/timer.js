@@ -9,10 +9,11 @@ function convert(ms) {
   const hours = minutes / 60;
   const days = hours / 24;
   const last = t => Math.floor(t % 60);
+  const lastHours = t => Math.floor(t % 24);
   return {
     seconds: last(seconds),
     minutes: last(minutes),
-    hours: Math.floor(hours),
+    hours: lastHours(hours),
     days: Math.floor(days)
   };
 }
