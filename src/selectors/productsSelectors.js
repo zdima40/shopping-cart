@@ -55,6 +55,14 @@ export const getValues = state => {
   return arr;
 };
 
+export const getIds = arr => {
+  const ids = [];
+  arr.map(el => {
+    ids.push(el["id"]);
+  });
+  return ids;
+};
+
 export const getActiveGroupId = ownProps => {
   //return Number(_.get(ownProps, "params.id"));
   return Number(ownProps.params.id);

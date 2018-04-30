@@ -40,7 +40,7 @@ const ProductsGroupsContainer = ({ groups, activeGroupId }) => (
 );
 
 const mapStateToProps = (state, ownProps) => ({
-  groups: getValues(state),
+  groups: getValues(state.products.byIdGroups),
   activeGroupId: getActiveGroupId(ownProps)
 });
 

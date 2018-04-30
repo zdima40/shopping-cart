@@ -42,7 +42,8 @@ const routes = {
 
 injectGlobal`
   body {
-    margin-top:15px;
+    margin-top: 15px;
+    background: #f7f7f7;
   }
 `;
 

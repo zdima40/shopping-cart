@@ -17,8 +17,9 @@ export const getVisibleProducts = (state, ownProps) =>
 export const getRenderedProductsLength = state =>
   fromProducts.getRenderedProductsLength(state.products);
 
-export const getValues = state =>
-  fromProducts.getValues(state.products.byIdGroups);
+export const getValues = state => fromProducts.getValues(state);
+
+export const getIds = arr => fromProducts.getIds(arr);
 
 export const getActiveGroupId = ownProps =>
   fromProducts.getActiveGroupId(ownProps);
