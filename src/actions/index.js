@@ -119,3 +119,10 @@ export const fetchSpecialOffersSettings = () => async dispatch => {
     });
   }
 };
+
+export const delProduct = id => dispatch => {
+  dispatch({
+    type: types.DELETE_FROM_CART,
+    id
+  })
+}

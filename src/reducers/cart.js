@@ -1,7 +1,8 @@
 import {
   ADD_TO_CART,
   CHECKOUT_FAILURE,
-  CHECKOUT_SUCCESS
+  CHECKOUT_SUCCESS,
+  DELETE_FROM_CART
 } from "constants/ActionTypes";
 
 // Lodash
@@ -21,6 +22,9 @@ const initialState = {
 *  при наличии значения productId
 *  возвращает массив с добавленным новым productId
 *
+*  DELETE_FROM_CART:
+*  удаление товара из корзины
+*
 *  default: 
 *  Возвращает текущее состояние
 */
@@ -32,6 +36,10 @@ const addedIds = (state = initialState.addedIds, action) => {
       }
       // return _.concat(state, action.productId);
       return [...state, action.productId];
+    case DELETE_FROM_CART:
+      const index = state.indexOf(action.id);
+      if (index !== -1) state.splice(index, 1);
+      return state;
     default:
       return state;
   }
