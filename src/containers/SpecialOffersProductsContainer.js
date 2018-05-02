@@ -11,7 +11,7 @@ class SpecialOffersProductsContainer extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
-    this.props.setProductSpecialOffers(this.props.products[0].id);
+    this.props.setProductSpecialOffers(this.props.soProducts[0].id);
   }
 
   setIdSpecialOffers(e) {
@@ -35,7 +35,7 @@ class SpecialOffersProductsContainer extends React.Component {
     setProductSpecialOffers(arr[this.idxSlider]);
   }
 
-  // Перезапускаем обновление sliderProduct
+  // Перезапуск обновления sliderProduct
   restartSliderProduct() {
     clearInterval(this.interval);
     this.interval = setInterval(() => this.sliderProduct(), 2000);
@@ -56,8 +56,8 @@ class SpecialOffersProductsContainer extends React.Component {
   }
 
   render() {
-    const { products } = this.props;
-    return <div>{products.map(product => this.renderImg(product))}</div>;
+    const { soProducts } = this.props;
+    return <div>{soProducts.map(product => this.renderImg(product))}</div>;
   }
 }
 

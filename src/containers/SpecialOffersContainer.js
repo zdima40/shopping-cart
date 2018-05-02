@@ -14,8 +14,13 @@ import Card, { CardContent } from "material-ui/Card";
 
 import { addToCart } from "actions";
 
-const SpecialOffersContainer = ({ products, timeOut, product, addToCart }) => {
-  if (products.length > 0) {
+const SpecialOffersContainer = ({
+  soProducts,
+  timeOut,
+  product,
+  addToCart
+}) => {
+  if (soProducts.length > 0) {
     return (
       <Card>
         <CardContent>
@@ -31,8 +36,8 @@ const SpecialOffersContainer = ({ products, timeOut, product, addToCart }) => {
             </Grid>
             <Grid item xs={2}>
               <SpecialOffersProducts
-                products={products}
-                idsSpecialOffersProducts={getIds(products)}
+                soProducts={soProducts}
+                idsSpecialOffersProducts={getIds(soProducts)}
               />
             </Grid>
           </Grid>
@@ -43,7 +48,7 @@ const SpecialOffersContainer = ({ products, timeOut, product, addToCart }) => {
 };
 
 const mapStateToProps = state => ({
-  products: getSpecialOffersProducts(state),
+  soProducts: getSpecialOffersProducts(state),
   timeOut: state.products.timeOut,
   product: getProduct(state, state.products.idSpecialOffersProduct)
 });
