@@ -38,7 +38,7 @@ class SpecialOffersProductsContainer extends React.Component {
   // Перезапуск обновления sliderProduct
   restartSliderProduct() {
     clearInterval(this.interval);
-    this.interval = setInterval(() => this.sliderProduct(), 2000);
+    this.interval = setInterval(() => this.sliderProduct(), 30000);
   }
 
   renderImg(product) {
@@ -68,7 +68,7 @@ const mapDispatchToProps = {
 };
 
 SpecialOffersProductsContainer.propTypes = {
-  products: PropTypes.arrayOf(
+  soProducts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       img: PropTypes.string.isRequired

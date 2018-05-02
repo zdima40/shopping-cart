@@ -59,7 +59,7 @@ const mapDispatchToProps = {
 };
 
 SpecialOffersContainer.propTypes = {
-  products: PropTypes.arrayOf(
+  soProducts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       img: PropTypes.string.isRequired
