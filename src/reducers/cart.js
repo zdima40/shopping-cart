@@ -1,5 +1,6 @@
 import {
-  ADD_TO_CART,
+  ADD_TO_CART_ONE,
+  ADD_TO_CART_MANY,
   CHECKOUT_FAILURE,
   CHECKOUT_SUCCESS,
   DELETE_FROM_CART
@@ -30,7 +31,7 @@ const initialState = {
 */
 const addedIds = (state = initialState.addedIds, action) => {
   switch (action.type) {
-    case ADD_TO_CART:
+    case ADD_TO_CART_ONE:
       if (state.indexOf(action.productId) !== -1) {
         return state;
       }
@@ -57,12 +58,21 @@ const addedIds = (state = initialState.addedIds, action) => {
 */
 const quantityById = (state = initialState.quantityById, action) => {
   switch (action.type) {
-    case ADD_TO_CART:
+    case ADD_TO_CART_ONE:
       const { productId } = action;
       //return _.merge(state, { [productId]: (state[productId] || 0) + 1 });
       return {
         ...state,
-        [productId]: (state[productId] || 0) + 1
+        //[productId]: (state[productId] || 0) + 1
+        [productId]: {
+          count: ((state[productId] && state[productId].count) || 0) + 1
+        }
+      };
+    case ADD_TO_CART_MANY:
+      const { count } = action;
+      return {
+        ...state,
+        [action.productId]: { count: count }
       };
     default:
       return state;

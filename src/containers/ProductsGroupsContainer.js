@@ -33,7 +33,6 @@ const renderAllGroups = activeGroupId => {
 
 const ProductsGroupsContainer = ({ groups, activeGroupId }) => (
   <div>
-    <div>Groups</div>
     {renderAllGroups(activeGroupId)}
     {groups.map(group => renderGroup(group, activeGroupId))}
   </div>

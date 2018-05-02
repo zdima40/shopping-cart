@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import { setProductSpecialOffers } from "actions";
 
 class SpecialOffersProductsContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.i = 0;
+    this.idxSlider = 0;
   }
 
   UNSAFE_componentWillMount() {
@@ -15,11 +16,11 @@ class SpecialOffersProductsContainer extends React.Component {
 
   setIdSpecialOffers(e) {
     this.props.setProductSpecialOffers(e.target.id);
-    this.props.restartSliderProduct();
+    this.restartSliderProduct();
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.sliderProduct(), 2000);
+    this.interval = setInterval(() => this.sliderProduct(), 30000);
   }
 
   componentWillUnmount() {
@@ -30,8 +31,8 @@ class SpecialOffersProductsContainer extends React.Component {
   sliderProduct() {
     const { setProductSpecialOffers, idsSpecialOffersProducts } = this.props;
     const arr = idsSpecialOffersProducts;
-    this.i == arr.length - 1 ? (this.i = 0) : this.i++;
-    setProductSpecialOffers(arr[this.i]);
+    this.idxSlider == arr.length - 1 ? (this.idxSlider = 0) : this.idxSlider++;
+    setProductSpecialOffers(arr[this.idxSlider]);
   }
 
   // Перезапускаем обновление sliderProduct
@@ -64,6 +65,16 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
   setProductSpecialOffers
+};
+
+SpecialOffersProductsContainer.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      img: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  idsSpecialOffersProducts: PropTypes.array
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import { getSpecialOffersProducts, getProduct, getIds } from "selectors";
 
@@ -13,7 +14,7 @@ import Card, { CardContent } from "material-ui/Card";
 
 import { addToCart } from "actions";
 
-const SpecialOffers = ({ products, timeOut, product, addToCart }) => {
+const SpecialOffersContainer = ({ products, timeOut, product, addToCart }) => {
   if (products.length > 0) {
     return (
       <Card>
@@ -52,4 +53,24 @@ const mapDispatchToProps = {
   getIds
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpecialOffers);
+SpecialOffersContainer.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      img: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  timeOut: PropTypes.string.isRequired,
+  product: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    describe: PropTypes.string.isRequired,
+    priceIs: PropTypes.number.isRequired,
+    priceBefore: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired
+  }),
+  addToCart: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  SpecialOffersContainer
+);

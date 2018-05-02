@@ -1,8 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import getTime from "scripts/timer";
 
 import Grid from "material-ui/Grid";
+
+import lang from "constants/lang";
+
 class SpecialOffersTimer extends React.Component {
   constructor(props) {
     super(props);
@@ -28,17 +32,29 @@ class SpecialOffersTimer extends React.Component {
     return (
       <Grid>
         <Grid item xs={12}>
-          SpecialOffers
+          {lang.TITLE_SPECIAL_OFFERS_TIMER}
         </Grid>
         <Grid item xs={12}>
-          <div>Days: {this.state.days}</div>
-          <div>Hours: {this.state.hours}</div>
-          <div>Minutes: {this.state.minutes}</div>
-          <div>Seconds: {this.state.seconds}</div>
+          <div>
+            {lang.DAYS_SPECIAL_OFFERS_TIMER + ":"} {this.state.days}
+          </div>
+          <div>
+            {lang.HOURS_SPECIAL_OFFERS_TIMER + ":"} {this.state.hours}
+          </div>
+          <div>
+            {lang.MINUTES_SPECIAL_OFFERS_TIMER + ":"} {this.state.minutes}
+          </div>
+          <div>
+            {lang.SECONDS_SPECIAL_OFFERS_TIMER + ":"} {this.state.seconds}
+          </div>
         </Grid>
       </Grid>
     );
   }
 }
+
+SpecialOffersTimer.propTypes = {
+  timeOut: PropTypes.string.isRequired
+};
 
 export default SpecialOffersTimer;

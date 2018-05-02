@@ -25,7 +25,8 @@ const ProductsList = ({ title, children, loadMoreProducts }) => (
 
 ProductsList.propTypes = {
   children: PropTypes.node,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  loadMoreProducts: PropTypes.func.isRequired
 };
 
 export default ProductsList;

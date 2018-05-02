@@ -18,7 +18,19 @@ export default class Lang {
       // ButtonPagination.js
       SHOW_MORE_BUTTON_PAGINATION: "Показать еще",
       // ProductsGroupsContainer.js
-      ALL_PRODUCTS_PRODCUTS_GROUPS_CONTAINER: "Все продукты"
+      ALL_PRODUCTS_PRODCUTS_GROUPS_CONTAINER: "Все продукты",
+      // Cart.js
+      DELETE_CART: "Удалить",
+      // SpecialOffersTimer.js
+      TITLE_SPECIAL_OFFERS_TIMER: "Специальное предложение",
+      DAYS_SPECIAL_OFFERS_TIMER: "Дни",
+      HOURS_SPECIAL_OFFERS_TIMER: "Часы",
+      MINUTES_SPECIAL_OFFERS_TIMER: "Минуты",
+      SECONDS_SPECIAL_OFFERS_TIMER: "Секунды",
+      // SpecialOffersProduct.js
+      NAME_SPECIAL_OFFERS_PRODUCT: "Наименование",
+      DESCRIPTION_SPECIAL_OFFERS_PRODUCT: "Описание",
+      PRICE_SPECIAL_OFFERS_PRODUCT: "Цена"
     };
     this.en = {
       // Cart.js
@@ -38,7 +50,19 @@ export default class Lang {
       // ButtonPagination.js
       SHOW_MORE_BUTTON_PAGINATION: "Show more",
       // ProductsGroupsContainer.js
-      ALL_PRODUCTS_PRODCUTS_GROUPS_CONTAINER: "All products"
+      ALL_PRODUCTS_PRODCUTS_GROUPS_CONTAINER: "All products",
+      // Cart.js
+      DELETE_CART: "Delete",
+      // SpecialOffersTimer.js
+      TITLE_SPECIAL_OFFERS_TIMER: "Special Offer",
+      DAYS_SPECIAL_OFFERS_TIMER: "Days",
+      HOURS_SPECIAL_OFFERS_TIMER: "Hours",
+      MINUTES_SPECIAL_OFFERS_TIMER: "Minutes",
+      SECONDS_SPECIAL_OFFERS_TIMER: "Seconds",
+      // SpecialOffersProduct.js
+      NAME_SPECIAL_OFFERS_PRODUCT: "Name",
+      DESCRIPTION_SPECIAL_OFFERS_PRODUCT: "Description",
+      PRICE_SPECIAL_OFFERS_PRODUCT: "Price"
     };
   }
 }

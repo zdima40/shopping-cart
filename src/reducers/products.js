@@ -1,13 +1,14 @@
 import { combineReducers } from "redux";
 import {
   RECEIVE_PRODUCTS,
-  ADD_TO_CART,
+  ADD_TO_CART_ONE,
   SET_PRODUCTS_VIEW_STYLE_SUCCESS,
   LOAD_MORE_PRODUCTS_SUCCESS,
   SEARCH_PRODUCT,
   FETCH_PRODUCTS_GROUPS_SUCCESS,
   GET_ID_PRODUCT_SPECIAL_OFFERS,
-  LOAD_SO_SETTINGS_SUCCESS
+  LOAD_SO_SETTINGS_SUCCESS,
+  UPDATE_PRODUCT_COUNT
 } from "constants/ActionTypes";
 
 // Lodash
@@ -35,12 +36,17 @@ const initialState = {
 */
 const product = (state, action) => {
   switch (action.type) {
-    case ADD_TO_CART:
+    case ADD_TO_CART_ONE:
       //return _.merge(state, { count: state.count - 1 });
       return {
         ...state,
         count: state.count - 1
       };
+    // case ADD_TO_CART2:
+    //   return {
+    //     ...state,
+    //     count: state.count - action.count
+    //   };
     default:
       return state;
   }
@@ -59,17 +65,37 @@ const product = (state, action) => {
 *  Если значение productId не получено, то возвращает текущее состояние
 * 
 */
+
+// Метод добавления в продукт свойства countApi
+const addCountApi = products =>
+  products.map(product =>
+    Object.assign({}, product, { countApi: product["count"] })
+  );
+
 const byId = (state = initialState.byId, action) => {
   switch (action.type) {
     case RECEIVE_PRODUCTS:
       //return _.merge(state, _.keyBy(action.products, "id"));
+      const productsWithCountApi = addCountApi(action.products);
+      console.log("LOG111:", productsWithCountApi);
       return {
         ...state,
-        ...action.products.reduce((obj, product) => {
+        ...productsWithCountApi.reduce((obj, product) => {
           obj[product.id] = product;
           return obj;
         }, {})
       };
+
+    case UPDATE_PRODUCT_COUNT:
+      let count;
+      for (let k in state) {
+        console.log("LOG:", action.quantityById[k]);
+        state[k].count = action.quantityById[k]
+          ? state[k].count - action.quantityById[k].count
+          : state[k].count;
+      }
+      return state;
+
     case LOAD_MORE_PRODUCTS_SUCCESS:
       //return _.merge(state, _.keyBy(action.products, "id"));
       return {

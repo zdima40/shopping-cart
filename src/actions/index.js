@@ -3,20 +3,39 @@ import * as types from "constants/ActionTypes";
 
 import { getCartProducts, getRenderedProductsLength } from "selectors";
 
-export const fetchProducts = () => async dispatch => {
+export const fetchProducts = () => async (dispatch, getState) => {
   const products = await shop.getProducts();
   dispatch({
     type: types.RECEIVE_PRODUCTS,
     products
   });
+  updateProductsCount(dispatch, getState);
 };
 
-export const addToCart = productId => (dispatch, getState) => {
-  if (getState().products.byId[productId].count > 0) {
+// Обновление количества товаров с учетов количества, которое уже в корзине
+const updateProductsCount = (dispatch, getState) => {
+  if (getState().cart.addedIds.length > 0) {
     dispatch({
-      type: types.ADD_TO_CART,
-      productId
+      type: types.UPDATE_PRODUCT_COUNT,
+      quantityById: getState().cart.quantityById
     });
+  }
+};
+
+export const addToCart = (productId, count) => (dispatch, getState) => {
+  if (getState().products.byId[productId].count > 0) {
+    if (count) {
+      dispatch({
+        type: types.ADD_TO_CART_MANY,
+        productId,
+        count
+      });
+    } else {
+      dispatch({
+        type: types.ADD_TO_CART_ONE,
+        productId
+      });
+    }
   }
 };
 
@@ -124,5 +143,5 @@ export const delProduct = id => dispatch => {
   dispatch({
     type: types.DELETE_FROM_CART,
     id
-  })
-}
+  });
+};

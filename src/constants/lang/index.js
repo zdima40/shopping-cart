@@ -1,6 +1,6 @@
 import Lang from "./translate";
 
-const LANG = "en";
+const LANG = "ru";
 
 let moduleLang;
 

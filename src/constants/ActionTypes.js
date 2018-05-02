@@ -1,4 +1,8 @@
-export const ADD_TO_CART = "ADD_TO_CART";
+export const ADD_TO_CART_ONE = "ADD_TO_CART_ONE";
+// Add to Cart from cart
+export const ADD_TO_CART_MANY = "ADD_TO_CART_MANY";
+export const UPDATE_PRODUCT_COUNT = "UPDATE_PRODUCT_COUNT";
+
 export const CHECKOUT_REQUEST = "CHECKOUT_REQUEST";
 export const CHECKOUT_SUCCESS = "CHECKOUT_SUCCESS";
 export const CHECKOUT_FAILURE = "CHECKOUT_FAILURE";
