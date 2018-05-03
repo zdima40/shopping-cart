@@ -53,16 +53,17 @@ class ProductsContainer extends Component {
         >
           <ThemeProvider theme={themes[themeProducts]}>
             <Wrap>
-              {products.map((product, index) => (
-                <ProductItem
-                  //rigth key={product.id}
-                  key={index}
-                  product={product}
-                  onAddToCartClicked={() => addToCart(product.id)}
-                  themeProducts={themeProducts}
-                  // for ProductsGroupsContainer
-                />
-              ))}
+              {products &&
+                products.map((product, index) => (
+                  <ProductItem
+                    //rigth key={product.id}
+                    key={index}
+                    product={product}
+                    onAddToCartClicked={() => addToCart(product.id)}
+                    themeProducts={themeProducts}
+                    // for ProductsGroupsContainer
+                  />
+                ))}
             </Wrap>
           </ThemeProvider>
         </ProductsList>

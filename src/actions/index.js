@@ -145,3 +145,10 @@ export const delProduct = id => dispatch => {
     id
   });
 };
+
+export const fetchProductId = id => dispatch => {
+  dispatch({
+    type: types.ADD_PRODUCT_ID,
+    id
+  });
+};

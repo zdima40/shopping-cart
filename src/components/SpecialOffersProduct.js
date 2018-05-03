@@ -5,24 +5,25 @@ import AddToCartButton from "components/AddToCartButton";
 
 import lang from "constants/lang";
 
-const SpecialOffersProduct = ({ product, onAddToCartClicked }) => {
-  if (product) {
+const SpecialOffersProduct = ({ soProduct, onAddToCartClicked }) => {
+  if (soProduct) {
     const renderBtn = true;
     return (
       <div>
         <div>
-          {lang.NAME_SPECIAL_OFFERS_PRODUCT + ":"} {product.title}
+          {lang.NAME_SPECIAL_OFFERS_PRODUCT + ":"} {soProduct.title}
         </div>
         <div>
-          {lang.DESCRIPTION_SPECIAL_OFFERS_PRODUCT + ":"} {product.description}
+          {lang.DESCRIPTION_SPECIAL_OFFERS_PRODUCT + ":"}{" "}
+          {soProduct.description}
         </div>
         <div>
           {lang.PRICE_SPECIAL_OFFERS_PRODUCT + ":"}{" "}
-          {`${product.priceIs} ${product.priceBefore}`}
+          {`${soProduct.priceIs} ${soProduct.priceBefore}`}
         </div>
         <AddToCartButton
           onAddToCartClicked={onAddToCartClicked}
-          quantity={product.count}
+          quantity={soProduct.count}
           renderBtn={renderBtn}
         />
       </div>
@@ -31,13 +32,7 @@ const SpecialOffersProduct = ({ product, onAddToCartClicked }) => {
 };
 
 SpecialOffersProduct.propTypes = {
-  product: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    describe: PropTypes.string.isRequired,
-    priceIs: PropTypes.number.isRequired,
-    priceBefore: PropTypes.number.isRequired,
-    count: PropTypes.number.isRequired
-  }),
+  soProduct: PropTypes.object,
   onAddToCartClicked: PropTypes.func.isRequired
 };
 

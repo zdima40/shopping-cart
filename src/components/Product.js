@@ -37,6 +37,7 @@ function renderDescribe(describe) {
 }
 
 const Product = ({
+  id,
   priceIs,
   priceBefore,
   quantity,
@@ -47,7 +48,7 @@ const Product = ({
   renderBtn
 }) => (
   <BlocksContainer>
-    <BlockA>
+    <BlockA to={`/products/${id}`}>
       <Image src={img} />
     </BlockA>
     <BlockB>

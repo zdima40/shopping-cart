@@ -17,10 +17,11 @@ import { addToCart } from "actions";
 const SpecialOffersContainer = ({
   soProducts,
   timeOut,
-  product,
+  soProduct,
   addToCart
 }) => {
   if (soProducts.length > 0) {
+    console.log("TYPE", typeof soProduct);
     return (
       <Card>
         <CardContent>
@@ -30,8 +31,8 @@ const SpecialOffersContainer = ({
             </Grid>
             <Grid item xs={7}>
               <SpecialOffersProduct
-                product={product}
-                onAddToCartClicked={() => addToCart(product.id)}
+                soProduct={soProduct}
+                onAddToCartClicked={() => addToCart(soProduct.id)}
               />
             </Grid>
             <Grid item xs={2}>
@@ -47,10 +48,16 @@ const SpecialOffersContainer = ({
   } else return <div />;
 };
 
+//
+// const getSoProduct = state => {
+//   const product = getProduct(state, state.products.idSpecialOffersProduct);
+//   return product ? product : {};
+// };
+
 const mapStateToProps = state => ({
   soProducts: getSpecialOffersProducts(state),
   timeOut: state.products.timeOut,
-  product: getProduct(state, state.products.idSpecialOffersProduct)
+  soProduct: getProduct(state, state.products.idSpecialOffersProduct)
 });
 
 const mapDispatchToProps = {
@@ -66,13 +73,7 @@ SpecialOffersContainer.propTypes = {
     })
   ).isRequired,
   timeOut: PropTypes.string.isRequired,
-  product: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    describe: PropTypes.string.isRequired,
-    priceIs: PropTypes.number.isRequired,
-    priceBefore: PropTypes.number.isRequired,
-    count: PropTypes.number.isRequired
-  }),
+  soProduct: PropTypes.object,
   addToCart: PropTypes.func.isRequired
 };
 

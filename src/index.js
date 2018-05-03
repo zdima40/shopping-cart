@@ -14,6 +14,7 @@ import reducer from "reducers";
 import Layout from "components/Layout";
 import Products from "containers/ProductsContainer";
 import Cart from "containers/CartContainer";
+import ProductPage from "containers/ProductPageContainer";
 
 import { injectGlobal } from "styled-components";
 
@@ -36,7 +37,8 @@ const routes = {
   childRoutes: [
     { path: "/", component: Products },
     { path: "/groups/:id", component: Products },
-    { path: "/cart", component: Cart }
+    { path: "/cart", component: Cart },
+    { path: "/products/:id", component: ProductPage }
   ]
 };
 

@@ -8,6 +8,7 @@ const ProductItem = ({ product, onAddToCartClicked, themeProducts }) => (
   <WrapAnimation>
     <ProductContainer>
       <Product
+        id={product.id}
         title={product.title}
         describe={themeProducts === 2 ? product.describe : ""}
         priceIs={product.priceIs}

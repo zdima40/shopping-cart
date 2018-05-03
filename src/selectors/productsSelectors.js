@@ -3,7 +3,9 @@
 /*
 * Метод получения продукта (объекта) из state по значению id
 */
-export const getProduct = (state, id) => state.byId[id];
+export const getProduct = (state, id) => {
+  return state.byId[id];
+};
 
 /*
 * Метод получения массива продуктов (объектов) по значениям id,

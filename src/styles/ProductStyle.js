@@ -1,6 +1,8 @@
 import style from "styled-components";
 import Button from "material-ui/Button";
 
+import { Link } from "react-router";
+
 const product = props => props.theme.product;
 
 export const BlocksContainer = style.div`
@@ -9,7 +11,7 @@ export const BlocksContainer = style.div`
   height: 100%;
 `;
 
-export const BlockA = style.div`
+export const BlockA = style(Link)`
 `;
 
 export const BlockB = style.div`

@@ -77,7 +77,6 @@ const byId = (state = initialState.byId, action) => {
     case RECEIVE_PRODUCTS:
       //return _.merge(state, _.keyBy(action.products, "id"));
       const productsWithCountApi = addCountApi(action.products);
-      console.log("LOG111:", productsWithCountApi);
       return {
         ...state,
         ...productsWithCountApi.reduce((obj, product) => {
