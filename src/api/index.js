@@ -4,6 +4,7 @@
 import products from "./products.json";
 import groups from "./groups.json";
 import timeOut from "./specialOfferSettings.json";
+import coupon from "./coupon.json";
 
 export default {
   getProducts: async () =>
@@ -21,6 +22,10 @@ export default {
   getTimeOut: async () =>
     new Promise(resolve => {
       resolve(timeOut);
+    }),
+  getCoupon: async code =>
+    new Promise(resolve => {
+      resolve(coupon);
     })
 };
 // getProducts: (cb, timeout) => setTimeout(() => cb(_products), timeout || TIMEOUT),

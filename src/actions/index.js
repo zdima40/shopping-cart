@@ -43,7 +43,7 @@ export const addToCart = (productId, count) => (dispatch, getState) => {
   }
 };
 
-export const checkout = products => async (dispatch, getState) => {
+export const checkout = (products, discount) => async (dispatch, getState) => {
   // Получить продукты (массив объектов)
   const products = getCartProducts(getState());
 
@@ -54,7 +54,8 @@ export const checkout = products => async (dispatch, getState) => {
   try {
     dispatch({
       type: types.CHECKOUT_SUCCESS,
-      products: products
+      products: products,
+      discount
     });
   } catch (err) {
     dispatch({
@@ -161,4 +162,21 @@ export const fetchProductId = id => (dispatch, getState) => {
     type: types.ADD_SIMILAR_PRODUCTS,
     arr: getSimilarProducts(state, id)
   });
+};
+
+export const fetchCoupon = code => async dispatch => {
+  const coupon = await shop.getCoupon(code);
+  dispatch({ type: types.FETCH_COUPON_START });
+  try {
+    dispatch({
+      type: types.FETCH_COUPON_SUCCESS,
+      coupon
+    });
+  } catch (err) {
+    dispatch({
+      type: types.FETCH_COUPON_FAILURE,
+      err,
+      error: true
+    });
+  }
 };

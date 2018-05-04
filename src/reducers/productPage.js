@@ -1,8 +1,13 @@
-import { ADD_PRODUCT_ID, ADD_SIMILAR_PRODUCTS } from "constants/ActionTypes";
+import {
+  ADD_PRODUCT_ID,
+  ADD_SIMILAR_PRODUCTS,
+  FETCH_COUPON_SUCCESS
+} from "constants/ActionTypes";
 
 const initialState = {
   id: null,
-  similarProducts: []
+  similarProducts: [],
+  discount: 0
 };
 
 const productPage = (state = initialState, action) => {
@@ -16,6 +21,11 @@ const productPage = (state = initialState, action) => {
       return {
         ...state,
         similarProducts: action.arr
+      };
+    case FETCH_COUPON_SUCCESS:
+      return {
+        ...state,
+        discount: action.coupon.discount
       };
     default:
       return state;

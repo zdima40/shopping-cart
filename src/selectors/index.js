@@ -39,14 +39,18 @@ export const getSimilarProducts = (state, id) =>
 *  с округлением до 2-х знаков 
 */
 
-export const getTotal = state =>
-  getAddedIds(state)
-    .reduce(
-      (total, id) =>
-        total + getProduct(state, id).priceIs * getQuantity(state, id),
-      0
-    )
-    .toFixed(2);
+export const getTotal = (state, discount) => {
+  discount = discount ? 1 - discount : 1;
+  return (
+    getAddedIds(state)
+      .reduce(
+        (total, id) =>
+          total + getProduct(state, id).priceIs * getQuantity(state, id),
+        0
+      )
+      .toFixed(2) * discount
+  );
+};
 
 /*
 *  Метод добавления в продкуты (объекты) количества (свойства quantity

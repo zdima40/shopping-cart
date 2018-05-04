@@ -4,7 +4,7 @@ import Product from "components/Product";
 
 import { connect } from "react-redux";
 
-import { delProduct, addToCart } from "actions";
+import { delProduct, addToCart, fetchCoupon, checkout } from "actions";
 
 import { getQuantity } from "selectors";
 
@@ -19,7 +19,17 @@ import { themeProduct } from "styles/CartStyle";
 import lang from "constants/lang";
 
 class Cart extends React.Component {
-  handleChange(e) {
+  constructor(props) {
+    super(props);
+    this.state = {
+      coupon: ""
+    };
+    this.handleChangeRendNodes = this.handleChangeRendNodes.bind(this);
+    this.handleSubmitRendCoupon = this.handleSubmitRendCoupon.bind(this);
+    this.handleChangeRendCoupon = this.handleChangeRendCoupon.bind(this);
+  }
+
+  handleChangeRendNodes(e) {
     const id = Number(e.target.id);
     let newCount = Number(e.target.value);
     const productCountApi = this.props.productsObj[id].countApi;
@@ -54,7 +64,7 @@ class Cart extends React.Component {
                   type="number"
                   inputProps={{ id: product.id }}
                   onChange={
-                    product.count > 0 ? this.handleChange.bind(this) : undefined
+                    product.count > 0 ? this.handleChangeRendNodes : undefined
                   }
                 />
               </Grid>
@@ -78,12 +88,12 @@ class Cart extends React.Component {
     return nodes;
   }
 
-  rendButton() {
-    const { onCheckoutClicked } = this.props;
+  rendCheckoutButton() {
+    const { products, discount, checkout } = this.props;
     return (
       <div>
         <Button
-          onClick={onCheckoutClicked}
+          onClick={() => checkout(products, discount)}
           variant="raised"
           disabled={this.hasProducts ? false : true}
         >
@@ -93,16 +103,56 @@ class Cart extends React.Component {
     );
   }
 
+  handleSubmitRendCoupon(e) {
+    e.preventDefault();
+    const code = this.state.coupon;
+    if (!code) {
+      return;
+    }
+    this.props.fetchCoupon(code);
+  }
+
+  handleChangeRendCoupon(e) {
+    this.setState({ coupon: e.target.value });
+  }
+
+  rendCoupon() {
+    return (
+      <form onSubmit={this.handleSubmitRendCoupon}>
+        <label htmlFor="coupon">{lang.COUPON_CART}: </label>
+        <input
+          type="text"
+          id="coupon"
+          value={this.state.coupon}
+          onChange={this.handleChangeRendCoupon}
+        />
+        <button>{lang.APPLY_CART}</button>
+      </form>
+    );
+  }
+
+  rendDiscount() {
+    const { discount } = this.props;
+    return (
+      <span>
+        {" "}
+        {lang.DISCOUNT_CART}: {discount * 100}%
+      </span>
+    );
+  }
+
   render() {
-    const { total } = this.props;
+    const { total, discount } = this.props;
     return (
       <div>
         <h3>{lang.YOUR_CART}</h3>
         <div>{this.rendNodes()}</div>
         <p>
           {lang.TOTAL_CART}: &#36;{total}
+          {discount ? this.rendDiscount() : ""}
         </p>
-        {this.rendButton()}
+        {this.rendCoupon()}
+        {this.rendCheckoutButton()}
       </div>
     );
   }
@@ -110,19 +160,23 @@ class Cart extends React.Component {
 
 Cart.propTypes = {
   products: PropTypes.array,
-  total: PropTypes.string,
+  total: PropTypes.number,
   onCheckoutClicked: PropTypes.func,
-  delProduct: PropTypes.func
+  delProduct: PropTypes.func,
+  discount: PropTypes.number
 };
 
 const mapStateToProps = state => ({
   state: state,
-  productsObj: state.products.byId //????
+  productsObj: state.products.byId, //????
+  discount: state.productPage.discount
 });
 
 const mapDispatchToProps = {
   delProduct,
-  addToCart
+  addToCart,
+  fetchCoupon,
+  checkout
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

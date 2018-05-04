@@ -21,6 +21,9 @@ export default class Lang {
       ALL_PRODUCTS_PRODCUTS_GROUPS_CONTAINER: "Все продукты",
       // Cart.js
       DELETE_CART: "Удалить",
+      APPLY_CART: "Применить",
+      DISCOUNT_CART: "Скидка",
+      COUPON_CART: "Купон",
       // SpecialOffersTimer.js
       TITLE_SPECIAL_OFFERS_TIMER: "Специальное предложение",
       DAYS_SPECIAL_OFFERS_TIMER: "Дни",
@@ -45,7 +48,7 @@ export default class Lang {
       ADD_TO_CART_PRODUCT_ITEM: "Add to cart",
       SOLD_OUT_PRODUCT_ITEM: "Sold Out",
       // Sidebar.js
-      PRODUCTS_SIDEBAR: "Prodcuts",
+      PRODUCTS_SIDEBAR: "Products",
       CART_SIDEBAR: "Cart",
       // ButtonPagination.js
       SHOW_MORE_BUTTON_PAGINATION: "Show more",
@@ -53,6 +56,9 @@ export default class Lang {
       ALL_PRODUCTS_PRODCUTS_GROUPS_CONTAINER: "All products",
       // Cart.js
       DELETE_CART: "Delete",
+      APPLY_CART: "Apply",
+      DISCOUNT_CART: "Discount",
+      COUPON_CART: "Coupon",
       // SpecialOffersTimer.js
       TITLE_SPECIAL_OFFERS_TIMER: "Special Offer",
       DAYS_SPECIAL_OFFERS_TIMER: "Days",

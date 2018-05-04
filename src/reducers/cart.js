@@ -97,7 +97,7 @@ const quantityById = (state = initialState.quantityById, action) => {
 const cart = (state = initialState, action) => {
   switch (action.type) {
     case CHECKOUT_SUCCESS:
-      alert(JSON.stringify(action.products));
+      alert(JSON.stringify([action.products, action.discount]));
       return initialState;
     case CHECKOUT_FAILURE:
       return action.err;
