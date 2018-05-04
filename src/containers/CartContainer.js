@@ -17,7 +17,7 @@ CartContainer.propTypes = {
       quantity: PropTypes.number.isRequired
     })
   ).isRequired,
-  total: PropTypes.number
+  total: PropTypes.string
 };
 
 const mapStateToProps = state => ({

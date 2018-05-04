@@ -6,8 +6,6 @@ import { connect } from "react-redux";
 
 import { delProduct, addToCart, fetchCoupon, checkout } from "actions";
 
-import { getQuantity } from "selectors";
-
 // import material-ui
 import Button from "material-ui/Button";
 import Grid from "material-ui/Grid";
@@ -44,8 +42,6 @@ class Cart extends React.Component {
     this.hasProducts = products.length > 0;
     const nodes = this.hasProducts ? (
       products.map(product => {
-        const productCount = getQuantity(state, product.id);
-
         return (
           <ThemeProvider theme={themeProduct} key={product.id}>
             <Grid container>
@@ -59,7 +55,7 @@ class Cart extends React.Component {
               </Grid>
               <Grid item xs={2}>
                 <TextField
-                  value={productCount}
+                  value={product.quantity}
                   label="Count"
                   type="number"
                   inputProps={{ id: product.id }}
@@ -160,14 +156,13 @@ class Cart extends React.Component {
 
 Cart.propTypes = {
   products: PropTypes.array,
-  total: PropTypes.number,
+  total: PropTypes.string,
   onCheckoutClicked: PropTypes.func,
   delProduct: PropTypes.func,
   discount: PropTypes.number
 };
 
 const mapStateToProps = state => ({
-  state: state,
   productsObj: state.products.byId, //????
   discount: state.productPage.discount
 });

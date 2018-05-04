@@ -42,14 +42,12 @@ export const getSimilarProducts = (state, id) =>
 export const getTotal = (state, discount) => {
   discount = discount ? 1 - discount : 1;
   return (
-    getAddedIds(state)
-      .reduce(
-        (total, id) =>
-          total + getProduct(state, id).priceIs * getQuantity(state, id),
-        0
-      )
-      .toFixed(2) * discount
-  );
+    getAddedIds(state).reduce(
+      (total, id) =>
+        total + getProduct(state, id).priceIs * getQuantity(state, id),
+      0
+    ) * discount
+  ).toFixed(2);
 };
 
 /*
