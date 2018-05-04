@@ -74,7 +74,7 @@ class ProductsContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   theme: state.products.theme,
-  products: getVisibleProducts(state, ownProps),
+  products: getVisibleProducts(state.products.visibleIds, state, ownProps),
   themeProducts: state.products.theme
 });
 

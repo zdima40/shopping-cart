@@ -1,7 +1,11 @@
 import shop from "api";
 import * as types from "constants/ActionTypes";
 
-import { getCartProducts, getRenderedProductsLength } from "selectors";
+import {
+  getCartProducts,
+  getRenderedProductsLength,
+  getSimilarProducts
+} from "selectors";
 
 export const fetchProducts = () => async (dispatch, getState) => {
   const products = await shop.getProducts();
@@ -146,9 +150,15 @@ export const delProduct = id => dispatch => {
   });
 };
 
-export const fetchProductId = id => dispatch => {
+export const fetchProductId = id => (dispatch, getState) => {
+  const state = getState();
   dispatch({
     type: types.ADD_PRODUCT_ID,
     id
+  });
+
+  dispatch({
+    type: types.ADD_SIMILAR_PRODUCTS,
+    arr: getSimilarProducts(state, id)
   });
 };

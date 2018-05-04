@@ -10,9 +10,10 @@ export const getProduct = (state, id) => {
 /*
 * Метод получения массива продуктов (объектов) по значениям id,
 * хранящимся в состоянии "visibleIds"
+* args: (state: array)
 */
-export const getVisibleProducts = (state, ownProps) => {
-  const activeGroupId = getActiveGroupId(ownProps);
+export const getVisibleProducts = (ids, state, ownProps) => {
+  const activeGroupId = ownProps && getActiveGroupId(ownProps);
 
   // const myFilterSearch = item => _.filter(item, applySearch);
   // const applySearch = item =>
@@ -28,6 +29,21 @@ export const getVisibleProducts = (state, ownProps) => {
   // );
   //const products = state.visibleIds.map(id => getProduct(state, id));
 
+  // const myFilterSearch = item => item.filter(applySearch);
+  // const applySearch = item =>
+  //   item.title.toLowerCase().includes(state.search.toLowerCase());
+
+  // const myFilterGroup = item =>
+  //   activeGroupId ? item.filter(applyGroup) : item;
+  // const applyGroup = item => (activeGroupId === item.group ? true : false);
+
+  // const products = (arr => {
+  //   const arrProducts = arr.map(id => getProduct(state, id));
+  //   let res = myFilterGroup(arrProducts);
+  //   res = myFilterSearch(res);
+  //   return res;
+  // })(state.visibleIds);
+
   const myFilterSearch = item => item.filter(applySearch);
   const applySearch = item =>
     item.title.toLowerCase().includes(state.search.toLowerCase());
@@ -41,8 +57,7 @@ export const getVisibleProducts = (state, ownProps) => {
     let res = myFilterGroup(arrProducts);
     res = myFilterSearch(res);
     return res;
-  })(state.visibleIds);
-
+  })(ids);
   return products;
 };
 

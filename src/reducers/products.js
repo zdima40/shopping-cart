@@ -88,7 +88,7 @@ const byId = (state = initialState.byId, action) => {
     case UPDATE_PRODUCT_COUNT:
       let count;
       for (let k in state) {
-        console.log("LOG:", action.quantityById[k]);
+        //console.log("LOG:", action.quantityById[k]);
         state[k].count = action.quantityById[k]
           ? state[k].count - action.quantityById[k].count
           : state[k].count;

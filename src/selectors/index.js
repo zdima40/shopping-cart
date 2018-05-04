@@ -1,5 +1,6 @@
 import * as fromCart from "./cartSelectors";
 import * as fromProducts from "./productsSelectors";
+import * as fromProductPage from "./productPageSelectors";
 
 // Импортированные методы
 const getAddedIds = state => fromCart.getAddedIds(state.cart);
@@ -11,8 +12,8 @@ export const getProduct = (state, id) =>
 
 export const getCountAddedIds = state => fromCart.getCountAddedIds(state.cart);
 
-export const getVisibleProducts = (state, ownProps) =>
-  fromProducts.getVisibleProducts(state.products, ownProps);
+export const getVisibleProducts = (ids, state, ownProps) =>
+  fromProducts.getVisibleProducts(ids, state.products, ownProps);
 
 export const getRenderedProductsLength = state =>
   fromProducts.getRenderedProductsLength(state.products);
@@ -26,6 +27,9 @@ export const getActiveGroupId = ownProps =>
 
 export const getSpecialOffersProducts = state =>
   fromProducts.getSpecialOffersProducts(state.products);
+
+export const getSimilarProducts = (state, id) =>
+  fromProductPage.getSimilarProducts(state.products, id);
 
 // export const getSpecialOffersProduct = state =>
 //   fromProducts.getSpecialOffersProduct(state.products);
@@ -55,3 +59,6 @@ export const getCartProducts = state =>
     ...getProduct(state, id),
     quantity: getQuantity(state, id)
   }));
+
+// Получение массива продуктов
+export const getProducts = (state, ids) => ids.map(id => getProduct(state, id));
