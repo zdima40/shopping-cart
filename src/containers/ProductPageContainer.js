@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { fetchProductId, addToCart } from "actions";
-import { getProduct, getProducts, getVisibleProducts } from "selectors";
+import { getProduct, getVisibleProducts } from "selectors";
 
 class ProductPageContainer extends React.Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class ProductPageContainer extends React.Component {
     const { addToCart } = this.props;
     return (
       <div key={sp.id}>
-        <img style={{ width: "50px" }} src={sp.img} />
+        <img style={{ width: "50px" }} src={sp.img} alt={sp.title} />
         <div> Title: {sp.title}</div>
         <div> Describe: {sp.describe}</div>
         <div> Price: {sp.priceIs}</div>
@@ -27,7 +27,7 @@ class ProductPageContainer extends React.Component {
     const { product, addToCart, similarProducts } = this.props;
     return (
       <div>
-        <img style={{ width: "50px" }} src={product.img} />
+        <img style={{ width: "50px" }} src={product.img} alt={product.title} />
         <div> Title: {product.title}</div>
         <div> Describe: {product.describe}</div>
         <div> Price: {product.priceIs}</div>

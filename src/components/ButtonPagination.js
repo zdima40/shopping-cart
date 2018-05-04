@@ -1,9 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import Button from "material-ui/Button";
-
-import { loadMoreProducts } from "actions";
 
 import lang from "constants/lang";
 

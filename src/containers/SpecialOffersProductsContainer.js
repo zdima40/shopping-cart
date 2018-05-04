@@ -31,7 +31,7 @@ class SpecialOffersProductsContainer extends React.Component {
   sliderProduct() {
     const { setProductSpecialOffers, idsSpecialOffersProducts } = this.props;
     const arr = idsSpecialOffersProducts;
-    this.idxSlider == arr.length - 1 ? (this.idxSlider = 0) : this.idxSlider++;
+    this.idxSlider === arr.length - 1 ? (this.idxSlider = 0) : this.idxSlider++;
     setProductSpecialOffers(arr[this.idxSlider]);
   }
 
@@ -50,6 +50,7 @@ class SpecialOffersProductsContainer extends React.Component {
           style={{ width: "100px" }}
           src={product.img}
           id={product.id}
+          alt={product.title}
         />
       </div>
     );

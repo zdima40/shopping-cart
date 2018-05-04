@@ -29,7 +29,7 @@ class Cart extends React.Component {
   }
 
   rendNodes() {
-    const { products, delProduct, quantityById, state } = this.props;
+    const { products, delProduct, state } = this.props;
 
     this.hasProducts = products.length > 0;
     const nodes = this.hasProducts ? (

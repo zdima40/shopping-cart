@@ -74,7 +74,7 @@ export const getValues = state => {
 
 export const getIds = arr => {
   const ids = [];
-  arr.map(el => {
+  arr.forEach(el => {
     ids.push(el["id"]);
   });
   return ids;
@@ -88,7 +88,7 @@ export const getActiveGroupId = ownProps => {
 // Получение массива продуктов со сниженной ценой (priceBefore > 0)
 export const getSpecialOffersProducts = state => {
   const arr = [];
-  getValues(state.byId).map(product => {
+  getValues(state.byId).forEach(product => {
     if (product.priceBefore) arr.push(product);
   });
   return arr;

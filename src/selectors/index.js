@@ -60,5 +60,5 @@ export const getCartProducts = state =>
     quantity: getQuantity(state, id)
   }));
 
-// Получение массива продуктов
-export const getProducts = (state, ids) => ids.map(id => getProduct(state, id));
+// // Получение массива продуктов
+// export const getProducts = (state, ids) => ids.map(id => getProduct(state, id));

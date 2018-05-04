@@ -21,7 +21,6 @@ const SpecialOffersContainer = ({
   addToCart
 }) => {
   if (soProducts.length > 0) {
-    console.log("TYPE", typeof soProduct);
     return (
       <Card>
         <CardContent>
